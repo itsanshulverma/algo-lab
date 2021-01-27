@@ -11,7 +11,26 @@ of nlogn.
 
 ***Code*** -
 <br />
-*This is only the Merge and Merge Sort function.* ***For full code, [please click here](https://github.com/itsanshulverma/algo-lab/blob/main/1_InsertionNMergeSort/b_MergeSort/main.cpp).***
+***For full code, [please click here](https://github.com/itsanshulverma/algo-lab/blob/main/1_InsertionNMergeSort/b_MergeSort/main.cpp).***
+
+```cpp
+...
+// Merge Sort function
+void mergeSort(int arr[], int left, int right) {
+  if (left < right) {
+    // Finding mid of array
+    int mid = left + (right - left) / 2;
+
+    mergeSort(arr, left, mid);
+    mergeSort(arr, mid + 1, right);
+
+    // Merge the sorted subarrays
+    merge(arr, left, mid, right);
+  }
+}
+...
+```
+
 ```cpp
 ...
 // Comarison counter
@@ -62,21 +81,54 @@ void merge(int arr[], int left, int mid, int right) {
       k++;
   }
 }
-
-// Merge Sort function
-void mergeSort(int arr[], int left, int right) {
-  if (left < right) {
-    // Finding mid of array
-    int mid = left + (right - left) / 2;
-
-    mergeSort(arr, left, mid);
-    mergeSort(arr, mid + 1, right);
-
-    // Merge the sorted subarrays
-    merge(arr, left, mid, right);
-  }
-}
 ...
+```
+
+```cpp
+...
+// Main Function
+int main()
+{
+  // Initialize srand 
+  srand(time(0));
+
+  // Number of iterations
+  int n = 100;
+
+  // Opening and initializing file
+  ofstream outputFile("plot_data.csv");
+  outputFile << "arr_size,n_comps";
+
+  for(int i = 0; i <= n; i++)
+  {
+    // Taking a random size ranging from 30 to 1000
+    int size = rand()%970 + 30;
+    int *arr = new int[size];
+
+    // Initializing array with random values
+    for(int j = 0; j < size; j++)
+    {
+      arr[j] = rand()%1000000;
+    }
+    cout << "\n------------------------------------\n";
+    cout << "Array " << i+1 << ": \n";
+
+    // Initializing comps and applying insertion sort
+    comps = 0;
+    mergeSort(arr, 0, size - 1);
+
+    // Printing the results
+    cout << "No. of elements: " << size << endl;
+    cout << "No. of comparisons: " << comps << endl;
+
+    // Saving data to file
+    outputFile << "\n" << size << "," << comps;
+  }
+
+  outputFile.close(); // Close the file
+  cout << endl;
+  return 0;
+}
 ```
 
 ***Sample Output*** -
