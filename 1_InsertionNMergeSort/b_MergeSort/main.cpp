@@ -8,7 +8,7 @@
 #include <sys/time.h>
 using namespace std;
 
-// Comarison counter
+// Comparison counter
 int comps;
 
 // Merge function to merge two subarrays into arr
@@ -40,7 +40,7 @@ void merge(int arr[], int left, int mid, int right) {
           arr[k] = M[j];
           j++;
       }
-      comps++;
+      comps++; // Increment comparison counter
       k++;
   }
 
