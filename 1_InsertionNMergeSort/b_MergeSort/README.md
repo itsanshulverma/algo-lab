@@ -113,7 +113,7 @@ int main()
     cout << "\n------------------------------------\n";
     cout << "Array " << i+1 << ": \n";
 
-    // Initializing comps and applying insertion sort
+    // Initializing comps and applying merge sort
     comps = 0;
     mergeSort(arr, 0, size - 1);
 
