@@ -19,47 +19,47 @@ of nlogn.
 int max_heapify(int arr[], int i, int size)
 {
   int count = 0; // comparison counter
-	int maxIndex = i;
-	int l = 2 * i + 1; // left child
-	int r = 2 * i + 2; // right child
+  int maxIndex = i;
+  int l = 2 * i + 1; // left child
+  int r = 2 * i + 2; // right child
 
   // Comparisons with left child
-	if (l < size && arr[l] > arr[maxIndex])
-		maxIndex = l;
+  if (l < size && arr[l] > arr[maxIndex])
+    maxIndex = l;
   // Comparisons with left child
-	if (r < size && arr[r] > arr[maxIndex])
-		maxIndex = r;
+  if (r < size && arr[r] > arr[maxIndex])
+    maxIndex = r;
   
   // Main logic
-	if (i != maxIndex)
-	{
-	  count++;
-		swap(arr[i], arr[maxIndex]);
-		count += max_heapify(arr, maxIndex, size);
-	}
-	return count;
+  if (i != maxIndex)
+  {
+    count++;
+    swap(arr[i], arr[maxIndex]);
+    count += max_heapify(arr, maxIndex, size);
+  }
+  return count;
 }
 
 /*
-	Build Heap function - iterating over all the 
-	non leaf nodes and applying max_heapify
+  Build Heap function - iterating over all the 
+  non leaf nodes and applying max_heapify
 */
 int buildMaxHeap(int arr[], int size)
 {
   int count = 0;
-	for (int i = size / 2-1; i >= 0; --i)
-		count += max_heapify(arr, i, size) + 1;
-	return count;
+  for (int i = size / 2-1; i >= 0; --i)
+    count += max_heapify(arr, i, size) + 1;
+  return count;
 }
 
 /*
-	Heap Sort function - iterates (size-1) times, 
-	swap max element (root) and last element and then 
-	applying max_heapify on root element (and decrease size by 1)
+  Heap Sort function - iterates (size-1) times, 
+  swap max element (root) and last element and then 
+  applying max_heapify on root element (and decrease size by 1)
 */
 int heapSort(int arr[], int size)
 {
-	int count = buildMaxHeap(arr, size);
+  int count = buildMaxHeap(arr, size);
   for (int i = size - 1; i > 0; i--) {
     swap(arr[0], arr[i]);
     count += max_heapify(arr, 0, i) + 1;
