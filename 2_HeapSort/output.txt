@@ -497,3 +497,4 @@ No. of comparisons: 3125
 ------------------------------------
 Array 100:
 No. of elements: 942
+No. of comparisons: 8940
