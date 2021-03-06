@@ -1,4 +1,4 @@
-# Heap Sort
+# Quick Sort
 *Written by Anshul Verma(19/78065)*
 <br />
 
