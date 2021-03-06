@@ -6,7 +6,7 @@
 
 ***Code*** -
 <br />
-***For full code, [please click here](https://github.com/itsanshulverma/algo-lab/blob/main/3_RadixSort/main.cpp).***
+***For full code, [please click here](https://github.com/itsanshulverma/algo-lab/blob/main/4_RadixSort/main.cpp).***
 
 ```cpp
 ...
