@@ -24,74 +24,73 @@ struct bucket
 // Bucket Sort Function
 void bucketSort(float ar[], int n)
 {
-	// 1) let B[0..n-1] be a new array of buckets
-	struct bucket B[n];
+  // 1) let B[0..n-1] be a new array of buckets
+  struct bucket B[n];
 
-	// 2) Create n empty buckets of size n
-	for (int i=0; i < n; i++)
-	{
-		B[i].ptr = -1;
-		B[i].value = new float[n];
-	}
+  // 2) Create n empty buckets of size n
+  for (int i=0; i < n; i++)
+  {
+    B[i].ptr = -1;
+    B[i].value = new float[n];
+  }
 
-	// 3) Put ar elements in suitable buckets
-	for (int i=0; i<n; i++) 
-	{
-		int idx = n * ar[i];
-		B[idx].value[++B[idx].ptr] = ar[i];
-	}
+  // 3) Put ar elements in suitable buckets
+  for (int i=0; i<n; i++) 
+  {
+    int idx = n * ar[i];
+    B[idx].value[++B[idx].ptr] = ar[i];
+  }
 
-	// 4) Sort and print each bucket using insertion sort
-	for (int i=0; i<n; i++)
-	{
-		insertionSort<float>(B[i].value, B[i].ptr+1);
-		cout << "  Bucket " << i;
-		print(B[i].value, B[i].ptr+1, " = ");
-	}
+  // 4) Sort and print each bucket using insertion sort
+  for (int i=0; i<n; i++)
+  {
+    insertionSort<float>(B[i].value, B[i].ptr+1);
+    cout << "  Bucket " << i;
+    print(B[i].value, B[i].ptr+1, " = ");
+  }
 
-	// 5) Concatenate all buckets together to ar in order
-	int idx = 0;
+  // 5) Concatenate all buckets together to ar in order
+  int idx = 0;
   for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < B[i].ptr+1; j++)
-    	ar[idx++] = B[i].value[j];
-		delete[] B[i].value; // and free the memory
-	}
+  {
+    for (int j = 0; j < B[i].ptr+1; j++)
+      ar[idx++] = B[i].value[j];
+	delete[] B[i].value; // and free the memory
+  }
 }
-...
 ```
 *Main Driver Function*
 ```cpp
 
 int main(){
-	// Initialize srand 
+  // Initialize srand 
   srand(time(0));
 
-	// Number of iterations
+  // Number of iterations
   int N = 10;
 
-	for(int i = 0; i < N; i++)
+  for(int i = 0; i < N; i++)
   {
-		// Taking a random size ranging from 5 to 20
-		int size = rand()%15 + 5;
-		float *arr = new float[size];
+    // Taking a random size ranging from 5 to 20
+    int size = rand()%15 + 5;
+    float *arr = new float[size];
 		
-		// Initializing array with random values
-		// between 0 and 1 with 2 digits after decimal
+    // Initializing array with random values
+    // between 0 and 1 with 2 digits after decimal
     for(int j = 0; j < size; j++)
     {
       arr[j] = (float) (rand()%100)/100;
     }
     cout << "Iteration " << i+1 << ":";
-		cout << "\n------------------------------------\n";
-		print(arr, size, "\nUnsorted Array = ");
-		cout << "\nApplying Bucket Sort Algorithm:\n\n";
-		bucketSort(arr, size);
-		print(arr, size, "\nSorted Array = ");
-		cout << endl;
-	}
+    cout << "\n------------------------------------\n";
+    print(arr, size, "\nUnsorted Array = ");
+    cout << "\nApplying Bucket Sort Algorithm:\n\n";
+    bucketSort(arr, size);
+    print(arr, size, "\nSorted Array = ");
+    cout << endl;
+  }
 
-	return 0;
+  return 0;
 }
 ```
 
